@@ -62,7 +62,6 @@ pizza_runner.customer_orders;
 
 Secondly, we'll clean the runner_orders table with CASE WHEN and TRIM and create a TEMP TABLE runner_orders1.
 In short:
-
     - pickup_time — Remove nulls and replace with ‘ ‘
     - distance — Remove ‘km’ and nulls
     - duration — Remove ‘minutes’ and nulls
@@ -107,12 +106,102 @@ ALTER TABLE pizza_runner.pizza_names
 ALTER COLUMN pizza_name NVARCHAR (50);
 ~~~~
 
+Now we are ready to go.
+
+## A. Pizza Metrics
+### 01.How many pizzas were ordered?
+
+~~~~sql
+SELECT
+  COUNT (pizza_id) AS total_pizzas
+FROM
+  customer_orders1
+~~~~
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193543741-e16f0eb3-64e1-48f4-8644-bf37993c162d.png"/>
+</p>
+
 
 ~~~~sql
 ~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
 ~~~~sql
 ~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
 ~~~~sql
 ~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
 ~~~~sql
 ~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
