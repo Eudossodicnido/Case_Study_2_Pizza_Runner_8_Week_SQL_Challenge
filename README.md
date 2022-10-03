@@ -108,26 +108,33 @@ ALTER COLUMN pizza_name NVARCHAR (50);
 
 Now we are ready to go.
 
-## A. Pizza Metrics
-### 01.How many pizzas were ordered?
+#### A. Pizza Metrics
+### 01. How many pizzas were ordered?
 
 ~~~~sql
 SELECT
   COUNT (pizza_id) AS total_pizzas
 FROM
-  customer_orders1
+  customer_orders1;
 ~~~~
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/69009356/193543741-e16f0eb3-64e1-48f4-8644-bf37993c162d.png"/>
 </p>
 
+#### 02. How many unique customer orders were made?
 
 ~~~~sql
+    SELECT
+  COUNT (DISTINCT(order_id)) AS unique_orders
+FROM
+  customer_orders1;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193545013-efab6bbb-a09e-436c-b698-d4644ae17bbf.png"/>
 </p>
+
+
 
 
 ~~~~sql
