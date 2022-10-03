@@ -6,7 +6,7 @@
 </p>
 
 
-### Introduction
+## Introduction
 
 This is analysis is the solving of 2nd case study the popular online 8 Week SQL Challenge by Danny Ma. 
 
@@ -16,11 +16,11 @@ Danny was sold on the idea, but he knew that pizza alone was not going to help h
 
 Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers.
 
-### Problem Statement
+## Problem Statement
 
 The problem is to address how the business is going and what can be optimized by analyzing the data. 
 
-### Data
+## Data
 
 Because Danny had a few years of experience as a data scientist - he was very aware that data collection was going to be critical for his business’ growth.
 
@@ -30,7 +30,7 @@ He has prepared for us an entity relationship diagram of his database design but
   <img src="https://user-images.githubusercontent.com/69009356/193540532-8213fbab-ed4d-4e81-b080-ac7b9ccabf5c.png"/>
 </p>
 
-### Questions
+## Questions
 they are broken up by area of focus including: * Pizza Metrics * Runner and Customer Experience * Ingredient Optimisation * Pricing and Ratings * Bonus DML Challenges 
 
 Before starting to answer the questions, some data cleaning is in order. Specifically:
@@ -108,8 +108,8 @@ ALTER COLUMN pizza_name NVARCHAR (50);
 
 Now we are ready to go.
 
-#### A. Pizza Metrics
-### 01. How many pizzas were ordered?
+### A. Pizza Metrics
+#### 01. How many pizzas were ordered?
 
 ~~~~sql
 SELECT
@@ -134,23 +134,102 @@ FROM
   <img src="https://user-images.githubusercontent.com/69009356/193545013-efab6bbb-a09e-436c-b698-d4644ae17bbf.png"/>
 </p>
 
+#### 03. How many successful orders were delivered by each runner?
 
+~~~~sql
+  SELECT
+  runner_id,
+  count(DISTINCT (order_id)) AS succesful_orders
+FROM
+  runner_orders1
+WHERE
+ cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY
+  runner_id
+ORDER BY
+  succesful_orders DESC;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193545583-b1e014f6-5d79-4697-bc4b-aac597bd3c28.png"/>
+</p>
 
+#### 04. How many of each type of pizza was delivered?
+
+~~~~sql
+SELECT 
+customer_orders1.pizza_id,
+pizza_names.pizza_name,
+COUNT (customer_orders1.pizza_id) AS n_of_orders
+FROM 
+customer_orders1
+INNER JOIN  pizza_runner.pizza_names ON customer_orders1.pizza_id=pizza_names.pizza_id
+INNER JOIN  runner_orders1 ON customer_orders1.order_id=runner_orders1.order_id
+WHERE 
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY 
+pizza_name,customer_orders1.pizza_id;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193546701-2927fa6d-d134-4e0d-a83e-d0167424298b.png"/>
+</p>
+
+#### 05. How many Vegetarian and Meatlovers were ordered by each customer?
+
+~~~~sql
+SELECT 
+customer_orders1.customer_id, 
+SUM (CASE WHEN customer_orders1.pizza_id =1 THEN 1 ELSE 0 END) AS meatlovers,
+SUM (CASE WHEN customer_orders1.pizza_id =2 THEN 1 ELSE 0 END) AS vegetarian
+FROM
+customer_orders1
+INNER JOIN pizza_runner.pizza_names on customer_orders1.pizza_id=pizza_names.pizza_id
+INNER JOIN runner_orders1 on customer_orders1.order_id=runner_orders1.order_id
+WHERE 
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY 
+customer_orders1.customer_id
+ORDER BY 
+customer_id;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193547814-b5196328-26a3-4b13-b09a-aab5e5898985.png"/>
+</p>
+
+#### 0
 
 ~~~~sql
 ~~~~
 <p align="center">
   <img src=""/>
 </p>
-
+#### 0
 
 ~~~~sql
 ~~~~
 <p align="center">
   <img src=""/>
 </p>
+#### 0
 
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+#### 0
 
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+#### 0
+
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
 ~~~~sql
 ~~~~
 <p align="center">
