@@ -33,8 +33,29 @@ He has prepared for us an entity relationship diagram of his database design but
 ### Questions
 they are broken up by area of focus including: * Pizza Metrics * Runner and Customer Experience * Ingredient Optimisation * Pricing and Ratings * Bonus DML Challenges 
 
-
+Before starting to answer the questions, some data cleaning is in order. Specifically:
+    - null values and data types in the customer_orders table
+    - null values and data types in the runner_orders table
+    - Alter data type in pizza_names table
+    
+First, we'll clean up exclusions and extras in the customer_orders by createting a TEMP TABLE customer_orders1 and using CASE WHEN    
 
 ~~~~sql
-
+SELECT 
+order_id, 
+customer_id, 
+pizza_id, 
+CASE 
+  WHEN exclusions IS null OR exclusions LIKE 'null' THEN ' '
+  ELSE exclusions
+  END AS exclusions,
+CASE 
+  WHEN extras IS NULL or extras LIKE 'null' THEN ' '
+  ELSE extras 
+  END AS extras, 
+order_time
+INTO 
+customer_orders1
+FROM 
+pizza_runner.customer_orders;
 ~~~~
