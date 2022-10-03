@@ -195,41 +195,106 @@ customer_id;
   <img src="https://user-images.githubusercontent.com/69009356/193547814-b5196328-26a3-4b13-b09a-aab5e5898985.png"/>
 </p>
 
-#### 0
+#### 06. What was the maximum number of pizzas delivered in a single order?
 
 ~~~~sql
+WITH pizza_counter AS 
+(SELECT
+customer_orders1.order_id,
+COUNT (customer_orders1.pizza_id) AS pizza_count,
+RANK () OVER (ORDER BY COUNT (customer_orders1.pizza_id) DESC) AS count_rank
+FROM
+customer_orders1
+INNER JOIN pizza_runner.pizza_names on customer_orders1.pizza_id=pizza_names.pizza_id
+INNER JOIN runner_orders1 on customer_orders1.order_id=runner_orders1.order_id
+WHERE
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY customer_orders1.order_id
+)
+
+SELECT
+pizza_count 
+FROM
+pizza_counter 
+WHERE
+count_rank=1
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193548660-3d543a69-f236-47ea-83a0-57ce65ef4c12.png"/>
 </p>
-#### 0
+
+#### 07. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+
 
 ~~~~sql
+SELECT
+customer_id,
+SUM (CASE WHEN (exclusions <> ' ') OR (extras <> ' ') THEN 1 ELSE 0 END) AS at_least_1_change,
+SUM (CASE WHEN (exclusions = ' ') AND (extras   = ' ') THEN 1 ELSE 0 END) AS no_changes
+FROM
+customer_orders1
+INNER JOIN runner_orders1 ON runner_orders1.order_id=customer_orders1.order_id
+WHERE
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY 
+customer_id;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193549167-984964ab-8a86-429c-852e-39834da14f6b.png"/>
 </p>
-#### 0
+
+#### 08. How many pizzas were delivered that had both exclusions and extras?
 
 ~~~~sql
+SELECT
+customer_id,
+SUM (CASE WHEN (exclusions <> ' ') AND (extras <> ' ') THEN 1 ELSE 0 END) AS exclusion_and_extra
+FROM 
+customer_orders1
+INNER JOIN runner_orders1 on runner_orders1.order_id=customer_orders1.order_id
+WHERE
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY
+customer_id;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193549854-dccf7391-77b6-450b-93f7-a04225159138.png"/>
 </p>
-#### 0
 
+#### 09. What was the total volume of pizzas ordered for each hour of the day?
 ~~~~sql
+SELECT 
+DATEPART(HOUR, [order_time]) AS hour, 
+COUNT(order_id) AS number_of_pizzas
+FROM 
+customer_orders1
+GROUP BY 
+DATEPART(HOUR, [order_time]);
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193550333-4a054661-fc8e-4316-8bfd-7dbb46610cb3.png"/>
 </p>
-#### 0
 
+#### 10. What was the volume of orders for each day of the week?
 ~~~~sql
+SELECT 
+DATENAME(WEEKDAY,[order_time]) AS day_of_the_week,
+COUNT(customer_orders1.order_id) AS number_of_pizzas
+FROM 
+customer_orders1
+INNER JOIN runner_orders1 on runner_orders1.order_id=customer_orders1.order_id
+WHERE
+runner_orders1.cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY
+DATENAME(WEEKDAY,[order_time]), DATEPART(dw,[order_time]) 
+ORDER BY
+DATEPART(dw,[order_time]) ;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193550864-16566053-584f-4402-a4ed-62990b2db9f1.png"/>
 </p>
+
+#### 0
 ~~~~sql
 ~~~~
 <p align="center">
