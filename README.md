@@ -565,18 +565,56 @@ ORDER BY COUNT (temp_exclusions.exclusion_name) DESC;
   <img src="https://user-images.githubusercontent.com/69009356/193621134-761975c5-ba7f-434e-b23d-28978623bb2a.png"/>
 </p>
 
-#### 0
+
+### D. Pricing and Ratings
+#### 01. If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
+
 ~~~~sql
+SELECT
+SUM(
+CASE 
+WHEN pizza_id = 1 THEN 12 
+WHEN pizza_id=2 THEN 10
+END) AS total_revenue
+FROM
+customer_orders1;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193622190-9be91275-4ba3-47f5-8d39-a6688b974f19.png"/>
 </p>
 
-#### 0
+#### 02. What if there was an additional $1 charge for any pizza extras? + Add cheese is $1 extra
+
 ~~~~sql
+WITH temp AS (
+SELECT 
+REPLACE (customer_orders1.extras, ',', '') AS n_of_extras,
+customer_orders1.pizza_id,
+runner_orders1.distance
+FROM
+customer_orders1
+INNER JOIN runner_orders1 ON customer_orders1.order_id=runner_orders1.order_id
+WHERE
+runner_orders1.distance<>0 
+),
+
+temp_2 AS (
+SELECT 
+LEN (REPLACE(n_of_extras,' ','')) AS n_of_extras,
+pizza_id 
+FROM
+temp)
+
+SELECT
+SUM(
+CASE 
+WHEN pizza_id = 1 THEN 12 
+WHEN pizza_id=2 THEN 10
+END) + SUM (n_of_extras) AS total_revenue 
+FROM temp_2;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193631732-7289563b-af47-4333-a04f-7ce32c4b8171.png"/>
 </p>
 
 #### 0
