@@ -371,28 +371,68 @@ distance <> 0
 GROUP BY customer_orders1.customer_id;
 ~~~~
 <p align="center">
-  <img src="(https://user-images.githubusercontent.com/69009356/193598160-53d9c775-5ec2-4e10-bf6d-c2a9659cf03b.png"/>
+  <img src="https://user-images.githubusercontent.com/69009356/193598160-53d9c775-5ec2-4e10-bf6d-c2a9659cf03b.png"/>
 </p>
 
-#### 0
+#### 05. What was the difference between the longest and shortest delivery times for all orders?
 ~~~~sql
+WITH max_and_min AS
+( 
+SELECT
+MAX(duration) AS max_duration,
+MIN (duration) AS min_duration
+FROM
+runner_orders1
+WHERE
+distance <> 0
+)
+
+SELECT
+max_duration - min_duration as diff_time
+FROM
+max_and_min;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193614327-b6ef5785-0ec2-417b-8799-6866ab2dac4f.png"/>
 </p>
 
-#### 0
+#### 06. What was the average speed for each runner for each delivery and do you notice any trend for these values?
 ~~~~sql
+SELECT
+runner_id,
+order_id,
+distance,
+duration,
+ROUND (AVG (distance/duration*60),1) AS average_speed,
+DATEPART(HOUR, [pickup_time]) AS hour_of_the_day
+from runner_orders1
+where distance <> 0
+GROUP by runner_id, order_id, distance,duration, pickup_time
+ORDER by runner_id;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193614778-a70b2ac3-0295-4d37-bd21-b52e407f13c0.png"/>
 </p>
 
-#### 0  
+More or less, it looks like as the hours go by the speed increases, probably because there is less traffic. Runner n.2 has a lot of variation, maybe there's a special reason?
+
+#### 07. What is the successful delivery percentage for each runner?
 ~~~~sql
+SELECT
+runner_id,
+ROUND(
+100 * SUM(CASE WHEN pickup_time <> ' ' THEN 1 ELSE 0 END) /
+COUNT(*), 0
+  ) AS success_percentage
+FROM 
+runner_orders1
+GROUP BY 
+runner_id
+ORDER BY 
+runner_id;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193615896-4bb479cb-f3f5-4a90-a123-c417bcd1cbcb.png"/>
 </p>
 
 #### 0
