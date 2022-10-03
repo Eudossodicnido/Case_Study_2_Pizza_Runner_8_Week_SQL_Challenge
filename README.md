@@ -532,11 +532,37 @@ ORDER BY count (temp_extras.extra_name) DESC;
 </p>
 
 
-#### 0
+#### 03. What was the most common exclusion?
 ~~~~sql
+WITH t_exclusions AS (
+SELECT 
+exclusions, value AS exclusion_name
+FROM 
+customer_orders1  
+CROSS APPLY STRING_SPLIT(exclusions, ',')
+),
+
+temp_exclusions AS (
+SELECT
+exclusions,
+TRIM (exclusion_name) AS exclusion_name
+FROM
+t_exclusions
+)
+
+SELECT 
+temp_exclusions.exclusion_name,
+COUNT (temp_exclusions.exclusion_name) n_of_exclusions,
+toppings1.toppings AS name_of_topping
+FROM 
+toppings1
+FULL JOIN temp_exclusions ON toppings1.value=temp_exclusions.exclusion_name
+WHERE temp_exclusions.exclusion_name <> ' '
+GROUP BY temp_exclusions.exclusion_name, toppings1.toppings
+ORDER BY COUNT (temp_exclusions.exclusion_name) DESC;
 ~~~~
 <p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193621134-761975c5-ba7f-434e-b23d-28978623bb2a.png"/>
 </p>
 
 #### 0
