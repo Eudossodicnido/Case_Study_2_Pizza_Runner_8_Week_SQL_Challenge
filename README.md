@@ -435,6 +435,145 @@ runner_id;
   <img src="https://user-images.githubusercontent.com/69009356/193615896-4bb479cb-f3f5-4a90-a123-c417bcd1cbcb.png"/>
 </p>
 
+### C. Ingredient Optimisation
+#### 01. What are the standard ingredients for each pizza?
+This one is a but tricky as we have to do some transformations: first we have to cast some data types, then extract all values as single values and put everything back togheter.
+~~~~sql
+--casting data type for string manipulation
+WITH converting AS (
+SELECT 
+pizza_id,
+CAST (toppings AS NVARCHAR (50)) AS toppings
+FROM 
+pizza_runner.pizza_recipes
+),
+--using cross applying string split to extract all values as single values
+temp AS (
+SELECT 
+pizza_id, toppings, value
+FROM 
+converting  
+CROSS APPLY STRING_SPLIT(toppings, ',')
+  ),
+
+--combining everything togheter
+combining AS (
+SELECT
+pizza_names.pizza_name,
+temp.value,
+CAST (pizza_toppings.topping_name AS NVARCHAR (50)) AS toppings
+FROM
+pizza_runner.pizza_names
+INNER JOIN temp ON pizza_names.pizza_id=temp.pizza_id
+INNER JOIN pizza_runner.pizza_toppings ON pizza_toppings.topping_id=temp.value)
+---putting all toppings back in a single row
+SELECT 
+pizza_name,
+STRING_AGG(combining.toppings,',' ) AS toppings
+FROM
+combining 
+GROUP BY pizza_name;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193617674-b4903913-f196-4997-9616-2cf4e6f82b04.png"/>
+</p>
+
+#### 02. What was the most commonly added extra?
+This is quite similar to the previous one. I'll just create a TEMP TABLE for the toppings.
+~~~~sql
+WITH converting AS (
+SELECT 
+pizza_id,
+CAST (toppings AS NVARCHAR (50)) AS toppings
+FROM pizza_runner.pizza_recipes
+),
+--using cross applying string split to extract all values as single values
+temp AS (
+SELECT pizza_id, toppings, value
+FROM converting  
+CROSS APPLY STRING_SPLIT(toppings, ',')
+),
+
+--combining everything togheter
+topping AS (SELECT
+pizza_names.pizza_name,
+temp.value,
+CAST (pizza_toppings.topping_name AS NVARCHAR (50)) AS toppings
+from pizza_runner.pizza_names
+INNER JOIN temp ON pizza_names.pizza_id=temp.pizza_id
+INNER JOIN pizza_runner.pizza_toppings ON pizza_toppings.topping_id=temp.value)
+
+--creating a temp table for toppings
+select 
+pizza_name,
+TRIM (value) as value,
+toppings
+into toppings1
+from topping;
+
+--applying the same transformation to the extras
+WITH temp_extras AS (
+SELECT extras, value AS extra_name
+FROM customer_orders1  
+    CROSS APPLY STRING_SPLIT(extras, ',')
+)
+--joining the results
+SELECT
+toppings1.toppings,
+count (temp_extras.extra_name) AS n_of_ordered_extras
+from temp_extras
+INNER join toppings1 on toppings1.value=temp_extras.extra_name
+where extra_name <> ' '
+Group by toppings1.toppings, extra_name
+ORDER BY count (temp_extras.extra_name) DESC;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193618921-1498f166-dc48-4163-8155-0c7d98604e46.png"/>
+</p>
+
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
+#### 0
+~~~~sql
+~~~~
+<p align="center">
+  <img src=""/>
+</p>
+
 #### 0
 ~~~~sql
 ~~~~
