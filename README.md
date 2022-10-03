@@ -294,6 +294,86 @@ DATEPART(dw,[order_time]) ;
   <img src="https://user-images.githubusercontent.com/69009356/193550864-16566053-584f-4402-a4ed-62990b2db9f1.png"/>
 </p>
 
+### B. Runner and Customer Experience
+#### 01. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+
+~~~~sql
+SELECT 
+DATEPART(WEEK, registration_date) AS registration_week,
+COUNT(runner_id) AS runner_signup
+FROM 
+pizza_runner.runners
+GROUP BY 
+DATEPART(WEEK, registration_date);
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193594527-fb99de0c-7f8f-4a24-879f-5b0c2d69b788.png"/>
+</p>
+
+#### 02. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+~~~~sql
+WITH diff_time AS (
+SELECT
+customer_orders1.order_time,
+runner_orders1.pickup_time,
+DATEDIFF (MINUTE, customer_orders1.order_time,runner_orders1.pickup_time) AS pickup_minutes
+FROM 
+customer_orders1
+INNER JOIN runner_orders1 ON customer_orders1.order_id=runner_orders1.order_id
+WHERE runner_orders1.distance <> 0
+)
+
+SELECT
+ROUND (AVG (pickup_minutes),3) AS avg_time
+FROM
+diff_time
+WHERE
+pickup_minutes >1;
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193595896-b59a5da2-13ac-4d6d-b19b-a450060e5261.png"/>
+</p>
+
+
+#### 03. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+~~~~sql
+SELECT
+customer_orders1.order_id,
+COUNT (customer_orders1.order_id) AS pizza_order,
+customer_orders1.order_time,
+runner_orders1.pickup_time,
+DATEDIFF(MINUTE, customer_orders1.order_time,runner_orders1.pickup_time) AS prep_time_minutes
+FROM 
+customer_orders1
+INNER JOIN runner_orders1 on customer_orders1.order_id=runner_orders1.order_id
+WHERE 
+runner_orders1.distance <> 0
+GROUP BY 
+customer_orders1.order_id, customer_orders1.order_time,runner_orders1.pickup_time
+ORDER BY 
+COUNT (customer_orders1.order_id);
+~~~~
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69009356/193597736-d3d33a4a-6761-4e94-842b-bbcbd01ab499.png"/>
+</p>
+
+#### 04. What was the average distance travelled for each customer?
+
+~~~~sql
+SELECT 
+customer_orders1.customer_id,
+ROUND (AVG(runner_orders1.distance),1) AS average_distance
+FROM
+runner_orders1
+INNER JOIN customer_orders1 ON runner_orders1.order_id=customer_orders1.order_id
+WHERE
+distance <> 0
+GROUP BY customer_orders1.customer_id;
+~~~~
+<p align="center">
+  <img src="(https://user-images.githubusercontent.com/69009356/193598160-53d9c775-5ec2-4e10-bf6d-c2a9659cf03b.png"/>
+</p>
+
 #### 0
 ~~~~sql
 ~~~~
@@ -301,56 +381,28 @@ DATEPART(dw,[order_time]) ;
   <img src=""/>
 </p>
 
-
+#### 0
 ~~~~sql
 ~~~~
 <p align="center">
   <img src=""/>
 </p>
 
-
+#### 0  
 ~~~~sql
 ~~~~
 <p align="center">
   <img src=""/>
 </p>
 
-
+#### 0
 ~~~~sql
 ~~~~
 <p align="center">
   <img src=""/>
 </p>
 
-
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-
+#### 0
 ~~~~sql
 ~~~~
 <p align="center">
