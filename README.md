@@ -59,3 +59,60 @@ customer_orders1
 FROM 
 pizza_runner.customer_orders;
 ~~~~
+
+Secondly, we'll clean the runner_orders table with CASE WHEN and TRIM and create a TEMP TABLE runner_orders1.
+In short:
+
+    - pickup_time — Remove nulls and replace with ‘ ‘
+    - distance — Remove ‘km’ and nulls
+    - duration — Remove ‘minutes’ and nulls
+    - cancellation — Remove NULL and null and replace with ‘ ‘
+
+~~~~sql
+SELECT 
+order_id, 
+runner_id,
+CASE 
+  WHEN pickup_time LIKE 'null' THEN ' '
+  ELSE pickup_time 
+  END AS pickup_time,
+CASE 
+  WHEN distance LIKE 'null' THEN ' '
+  WHEN distance LIKE '%km' THEN TRIM('km' from distance) 
+  ELSE distance END AS distance,
+CASE 
+  WHEN duration LIKE 'null' THEN ' ' 
+  WHEN duration LIKE '%mins' THEN TRIM('mins' from duration) 
+  WHEN duration LIKE '%minute' THEN TRIM('minute' from duration)        
+  WHEN duration LIKE '%minutes' THEN TRIM('minutes' from duration)       
+  ELSE duration END AS duration,
+CASE 
+  WHEN cancellation IS NULL or cancellation LIKE 'null' THEN ''
+  ELSE cancellation END AS cancellation
+INTO 
+runner_orders1
+FROM 
+pizza_runner.runner_orders;
+~~~~
+
+Lastly, we have to to alter some data to their correct data types:
+
+~~~~sql
+ALTER TABLE 1runner_orders
+ALTER COLUMN pickup_time DATETIME,
+ALTER COLUMN distance FLOAT, 
+ALTER COLUMN duration INT;
+
+ALTER TABLE pizza_runner.pizza_names
+ALTER COLUMN pizza_name NVARCHAR (50);
+~~~~
+
+
+~~~~sql
+~~~~
+~~~~sql
+~~~~
+~~~~sql
+~~~~
+~~~~sql
+~~~~
