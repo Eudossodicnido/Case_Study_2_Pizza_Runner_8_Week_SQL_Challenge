@@ -27,7 +27,7 @@ Because Danny had a few years of experience as a data scientist - he was very aw
 He has prepared for us an entity relationship diagram of his database design but requires further assistance to clean his data and apply some basic calculations so he can better direct his runners and optimise Pizza Runner’s operations.
 
 <p align="center">
-  <img src="(https://user-images.githubusercontent.com/69009356/193540532-8213fbab-ed4d-4e81-b080-ac7b9ccabf5c.png"/>
+  <img src="https://user-images.githubusercontent.com/69009356/193540532-8213fbab-ed4d-4e81-b080-ac7b9ccabf5c.png"/>
 </p>
 
 ### Questions
