@@ -7,11 +7,11 @@
 
 
 ## Summary
-#### -Introduction
-#### -Problem Statement
-#### -Data
-#### -Data Cleaning
-#### -Questions:
+- Introduction
+- Problem Statement
+- Data
+- Data Cleaning
+- Questions:
    - A. Pizza Metrics
    - B. Runner and Customer Experience
    - C. Ingredient Optimisation
