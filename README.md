@@ -72,10 +72,10 @@ pizza_runner.customer_orders;
 
 Secondly, we'll clean the runner_orders table with CASE WHEN and TRIM and create a TEMP TABLE runner_orders1.
 In short:
-    - pickup_time — Remove nulls and replace with ‘ ‘
-    - distance — Remove ‘km’ and nulls
-    - duration — Remove ‘minutes’ and nulls
-    - cancellation — Remove NULL and null and replace with ‘ ‘
+- pickup_time — Remove nulls and replace with ‘ ‘
+- distance — Remove ‘km’ and nulls
+- duration — Remove ‘minutes’ and nulls
+- cancellation — Remove NULL and null and replace with ‘ ‘
 
 ~~~~sql
 SELECT 
