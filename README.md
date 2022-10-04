@@ -7,15 +7,15 @@
 
 
 ## Summary
-#### - Introduction
-#### - Problem Statement
-#### - Data
-#### - Data Cleaning
-#### - Questions:
-  ####  - A.
-  #### - B.
-  #### - C.
-  #### - D.
+#### -Introduction
+#### -Problem Statement
+#### -Data
+#### -Data Cleaning
+#### -Questions:
+    - A.
+   - B.
+     -C.
+     -D.
    
 
 ## Introduction
