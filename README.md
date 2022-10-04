@@ -6,6 +6,13 @@
 </p>
 
 
+## Summary
+#### - Introduction
+#### - Problem Statement
+##### Data
+##### Data Cleaning
+##### Questions
+
 
 
 ## Introduction
@@ -32,9 +39,7 @@ He has prepared for us an entity relationship diagram of his database design but
   <img src="https://user-images.githubusercontent.com/69009356/193540532-8213fbab-ed4d-4e81-b080-ac7b9ccabf5c.png"/>
 </p>
 
-## Questions
-they are broken up by area of focus including: * Pizza Metrics * Runner and Customer Experience * Ingredient Optimisation * Pricing and Ratings * Bonus DML Challenges 
-
+## Data Cleaning
 Before starting to answer the questions, some data cleaning is in order. Specifically:
     - null values and data types in the customer_orders table
     - null values and data types in the runner_orders table
@@ -109,6 +114,9 @@ ALTER COLUMN pizza_name NVARCHAR (50);
 ~~~~
 
 Now we are ready to go.
+
+## Questions
+There are several questions for several topics: Pizza Metrics, Runner and Customer Experience,  Ingredient Optimisation and Pricing and Ratings. 
 
 ### A. Pizza Metrics
 #### 01. How many pizzas were ordered?
