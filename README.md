@@ -7,15 +7,15 @@
 
 
 ## Summary
-- Introduction
-- Problem Statement
-- Data
-- Data Cleaning
-- Questions:
-   - A. Pizza Metrics
-   - B. Runner and Customer Experience
-   - C. Ingredient Optimisation
-   - D. Pricing and Ratings
+[- Introduction][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#introduction]
+[- Problem Statement][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#problem-statement]
+[- Data][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#data]
+[- Data Cleaning][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#data-cleaning]
+[- Questions:][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#questions]
+   [- A. Pizza Metrics][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#a-pizza-metrics]
+   [- B. Runner and Customer Experience][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#b-runner-and-customer-experience]
+   [- C. Ingredient Optimisation][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#c-ingredient-optimisation]
+   [- D. Pricing and Ratings][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#d-pricing-and-ratings]
    
 
 ## Introduction
