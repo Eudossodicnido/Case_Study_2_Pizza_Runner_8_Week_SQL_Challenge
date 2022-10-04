@@ -1,4 +1,4 @@
-# Analysis of a food delivery app database with SQL
+# Analysis of a food delivery app's database with SQL
 
 
 <p align="center">
