@@ -9,11 +9,14 @@
 ## Summary
 #### - Introduction
 #### - Problem Statement
-##### Data
-##### Data Cleaning
-##### Questions
-
-
+#### - Data
+#### - Data Cleaning
+#### - Questions
+  #### A.
+  #### B.
+  #### C.
+  #### D.
+   
 
 ## Introduction
 
