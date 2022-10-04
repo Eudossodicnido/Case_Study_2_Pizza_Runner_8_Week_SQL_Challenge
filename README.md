@@ -6,6 +6,8 @@
 </p>
 
 
+
+
 ## Introduction
 
 This is analysis is the solving of 2nd case study the popular online 8 Week SQL Challenge by Danny Ma. 
@@ -617,37 +619,15 @@ FROM temp_2;
   <img src="https://user-images.githubusercontent.com/69009356/193631732-7289563b-af47-4333-a04f-7ce32c4b8171.png"/>
 </p>
 
-#### 0
+#### 03. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 ~~~~sql
+SELECT 
+138 - SUM (runner_orders1.distance) * 0.3 AS money_left
+FROM
+runner_orders1
+WHERE
+cancellation NOT IN ('Restaurant Cancellation', 'Customer Cancellation');
 ~~~~
 <p align="center">
-  <img src=""/>
-</p>
-
-#### 0
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-#### 0
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-#### 0
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
-</p>
-
-#### 0
-~~~~sql
-~~~~
-<p align="center">
-  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/69009356/193780119-07fc5264-96be-4613-9c45-7581f52fd9be.png"/>
 </p>
