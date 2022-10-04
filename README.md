@@ -138,7 +138,7 @@ FROM
 #### 02. How many unique customer orders were made?
 
 ~~~~sql
-    SELECT
+SELECT
   COUNT (DISTINCT(order_id)) AS unique_orders
 FROM
   customer_orders1;
@@ -150,7 +150,7 @@ FROM
 #### 03. How many successful orders were delivered by each runner?
 
 ~~~~sql
-  SELECT
+SELECT
   runner_id,
   count(DISTINCT (order_id)) AS succesful_orders
 FROM
@@ -337,7 +337,7 @@ WHERE runner_orders1.distance <> 0
 )
 
 SELECT
-ROUND (AVG (pickup_minutes),3) AS avg_time
+ROUND (AVG (pickup_minutes),3) AS avg_pickup_minutes
 FROM
 diff_time
 WHERE
