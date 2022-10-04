@@ -1,4 +1,4 @@
-# Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge
+# Analysis of a food delivery app database with SQL
 
 
 <p align="center">
