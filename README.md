@@ -11,11 +11,11 @@
 #### - Problem Statement
 #### - Data
 #### - Data Cleaning
-#### - Questions
-  #### A.
-  #### B.
-  #### C.
-  #### D.
+#### - Questions:
+  ####  - A.
+  #### - B.
+  #### - C.
+  #### - D.
    
 
 ## Introduction
