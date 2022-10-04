@@ -12,10 +12,10 @@
 #### -Data
 #### -Data Cleaning
 #### -Questions:
-    - A.
-   - B.
-     -C.
-     -D.
+   - A. Pizza Metrics
+   - B. Runner and Customer Experience
+   - C. Ingredient Optimisation
+   - D. Pricing and Ratings
    
 
 ## Introduction
