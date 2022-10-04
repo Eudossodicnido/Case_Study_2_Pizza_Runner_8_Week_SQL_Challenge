@@ -7,7 +7,7 @@
 
 
 ## Summary
-[- Introduction][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#introduction]
+[- Introduction](https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#introduction)
 [- Problem Statement][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#problem-statement]
 [- Data][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#data]
 [- Data Cleaning][https://github.com/Eudossodicnido/Case_Study_2_Pizza_Runner_8_Week_SQL_Challenge/blob/main/README.md#data-cleaning]
